@@ -52,7 +52,7 @@ namespace Firma
         public string Imie { get => imie; set => imie = value; }
         public string Nazwisko { get => nazwisko; set => nazwisko = value; }
         public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
-        public string PESEL1 { get => PESEL; set => PESEL = value; }
+        public string Pesel { get => PESEL; set => PESEL = value; }
         internal Plcie Plec { get => plec; set => plec = value; }
         public string NumerTelefonu { get => numerTelefonu; set => numerTelefonu = value; }
 
@@ -79,60 +79,91 @@ namespace Firma
             return (DateTime.Now - dataUrodzenia).TotalHours;
         }
 
-        public bool CorrectPESEL(string Pesel)
+        public double CalcCheckDigit()
         {
-            if (Pesel.Length == 11)
+            double first = Char.GetNumericValue(PESEL[0]) * 1;
+            double second = Char.GetNumericValue(PESEL[1]) * 3;
+            double third = Char.GetNumericValue(PESEL[2]) * 7;
+            double forth = Char.GetNumericValue(PESEL[3]) * 9;
+            double fifth = Char.GetNumericValue(PESEL[4]) * 1;
+            double sixth = Char.GetNumericValue(PESEL[5]) * 3;
+            double seventh = Char.GetNumericValue(PESEL[6]) * 7;
+            double eighth = Char.GetNumericValue(PESEL[7]) * 9;
+            double nineth = Char.GetNumericValue(PESEL[8]) * 1;
+            double tenth = Char.GetNumericValue(PESEL[9]) * 3;
+
+            if (first > 10)
+                first %= 10;
+            if (second > 10)
+                second %= 10;
+            if (third > 10)
+                third %= 10;
+            if (fifth > 10)
+                fifth %= 10;
+            if (sixth > 10)
+                sixth %= 10;
+            if (seventh > 10)
+                seventh %= 10;
+            if (eighth > 10)
+                eighth %= 10;
+            if (nineth > 10)
+                nineth %= 10;
+            if (tenth > 10)
+                tenth %= 10;
+
+            double sum = first + second + third + forth + fifth + 
+                         sixth + seventh + eighth + nineth + tenth;
+            if (sum > 10)
+                sum %= 10;
+            
+            double check_digit = 10 - sum;
+            return check_digit;
+        }
+
+        public bool CorrectPESEL()
+        {
+            if (PESEL.Length == 11)
             {
-                if (Convert.ToString(dataUrodzenia.Year % 100) == Pesel[0].ToString() + Pesel[1])
+                if (Convert.ToString(dataUrodzenia.Year % 100) == Convert.ToString(PESEL[0]) + PESEL[1])
                 {
                     int month = dataUrodzenia.Month;
-                    if (dataUrodzenia.Year < 2000)
+                    if (dataUrodzenia.Year >= 2000)
                         month += 20;
-                    if (month.ToString().PadLeft(2, '0') == Pesel[2].ToString() + Pesel[3])
+                    if (Convert.ToString(month).PadLeft(2, '0') == Convert.ToString(PESEL[2]) + PESEL[3])
                     {
-                        int day = dataUrodzenia.Day;
-                        if (day.ToString().PadLeft(2, '0') == Pesel[4].ToString() + Pesel[5])
+                        if (Convert.ToString(dataUrodzenia.Day).PadLeft(2, '0') == Convert.ToString(PESEL[4]) + PESEL[5])
                         {
                             if (plec == Plcie.K)
                             {
-                                if (Convert.ToInt32(Pesel[9] % 2) == 0)
+                                if (Char.GetNumericValue(PESEL[9]) % 2 == 0)
                                 {
-
+                                    double check_digit = CalcCheckDigit();
+                                    if (check_digit == Char.GetNumericValue(PESEL[10]))
+                                        return true;
+                                    else
+                                        return false;
+                                }
+                                else
+                                    return false;
+                            }
+                            else if (plec == Plcie.M)
+                            {
+                                if (Char.GetNumericValue(PESEL[9]) % 2 == 1)
+                                {
+                                    double check_digit = CalcCheckDigit();
+                                    if (check_digit == Char.GetNumericValue(PESEL[10]))
+                                        return true;
+                                    else
+                                        return false;
                                 }
                                 else
                                     return false;
                             }
                             else
-                            {
-                                if (Convert.ToInt32(Pesel[9] % 2) == 1)
-                                {
-                                    int first = (Pesel[0] - 48) * 1;
-                                    int second = (Pesel[1] - 48) * 3;
-                                    int third = (Pesel[2] - 48) * 7;
-                                    int forth = (Pesel[3] - 48) * 9;
-                                    int fifth = (Pesel[4] - 48) * 1;
-                                    int sixth = (Pesel[5] - 48) * 3;
-                                    int seventh = (Pesel[6] - 48) * 7;
-                                    int eighth = (Pesel[7] - 48) * 9;
-                                    int nineth = (Pesel[8] - 48) * 1;
-                                    int tenth = (Pesel[9] - 48) * 3;
-                                    if (first > 10)
-                                        first %= 10;
-                                    if (second > 10)
-                                        second %= 10;
-                                    if (third > 10)
-                                        third %= 10;
-                                    if (fifth > 10)
-                                        fifth %= 10;
-                                    if (sixth > 10)
-                                        sixth %= 10;
-                                    if ()
-                                    int sum = first + second + third + forth + fifth + sixth + seventh + eighth + nineth + tenth;
-                                }
-                                else
-                                    return false;
-                            }
+                                return false;
                         }
+                        else
+                            return false;
                     }
                     else
                         return false;
@@ -142,12 +173,6 @@ namespace Firma
             }
             else
                 return false;
-
         }
-    }
-
-    int calc_sum()
-    {
-
     }
 }
