@@ -1,0 +1,7 @@
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.exe.config
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.exe
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.pdb
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.csprojAssemblyReference.cache
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.csproj.CoreCompileInputs.cache
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.exe
+C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.pdb
