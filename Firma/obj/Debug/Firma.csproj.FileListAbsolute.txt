@@ -1,14 +1,8 @@
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.exe.config
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.exe
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\bin\Debug\Firma.pdb
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.csprojAssemblyReference.cache
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.csproj.CoreCompileInputs.cache
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.exe
-C:\Users\Wysocki Wojciech\source\repos\Firma\Firma\obj\Debug\Firma.pdb
-C:\Users\wojte\Source\Repos\firma\Firma\bin\Debug\Firma.exe.config
-C:\Users\wojte\Source\Repos\firma\Firma\bin\Debug\Firma.exe
-C:\Users\wojte\Source\Repos\firma\Firma\bin\Debug\Firma.pdb
-C:\Users\wojte\Source\Repos\firma\Firma\obj\Debug\Firma.csproj.SuggestedBindingRedirects.cache
-C:\Users\wojte\Source\Repos\firma\Firma\obj\Debug\Firma.csproj.CoreCompileInputs.cache
-C:\Users\wojte\Source\Repos\firma\Firma\obj\Debug\Firma.exe
-C:\Users\wojte\Source\Repos\firma\Firma\obj\Debug\Firma.pdb
+C:\Users\wojte\source\repos\firma\Firma\bin\Debug\Firma.exe.config
+C:\Users\wojte\source\repos\firma\Firma\bin\Debug\Firma.exe
+C:\Users\wojte\source\repos\firma\Firma\bin\Debug\Firma.pdb
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.AssemblyReference.cache
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.SuggestedBindingRedirects.cache
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.CoreCompileInputs.cache
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.exe
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.pdb

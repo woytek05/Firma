@@ -20,6 +20,7 @@ namespace Firma
             Osoba ja = new Osoba("Wojciech", "Wysocki", "2005-09-23", "05292301314", Plcie.M);
 
             Console.WriteLine(ja.Pesel);
+
             if (ja.CorrectPESEL())
                 Console.WriteLine("Poprawny PESEL!");
             else
