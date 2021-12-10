@@ -124,9 +124,9 @@ namespace Firma
         {
             if (PESEL.Length == 11)
             {
-                if (Convert.ToString(dataUrodzenia.Year % 100) == Convert.ToString(PESEL[0]) + PESEL[1])
+                if (Convert.ToString(dataUrodzenia.Year % 100).PadLeft(2, '0') == Convert.ToString(PESEL[0]) + PESEL[1])
                 {
-                    /*int month = dataUrodzenia.Month;
+                    int month = dataUrodzenia.Month;
                     if (dataUrodzenia.Year >= 2000)
                         month += 20;
                     if (Convert.ToString(month).PadLeft(2, '0') == Convert.ToString(PESEL[2]) + PESEL[3])
@@ -142,7 +142,6 @@ namespace Firma
                                         return true;
                                     else
                                         return false;
-                                    return true;
                                 }
                                 else
                                     return false;
@@ -167,8 +166,7 @@ namespace Firma
                             return false;
                     }
                     else
-                        return false;*/
-                    return true;
+                        return false;
                 }
                 else
                     return false;
