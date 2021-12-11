@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Firma
 {
-    class Osoba
+    abstract class Osoba
     {
         private string imie;
         private string nazwisko;
@@ -15,6 +15,13 @@ namespace Firma
         private string PESEL;
         private Plcie plec;
         private string numerTelefonu;
+
+        public string Imie { get => imie; set => imie = value; }
+        public string Nazwisko { get => nazwisko; set => nazwisko = value; }
+        public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
+        public string Pesel { get => PESEL; set => PESEL = value; }
+        internal Plcie Plec { get => plec; set => plec = value; }
+        public string NumerTelefonu { get => numerTelefonu; set => numerTelefonu = value; }
 
         public Osoba()
         {
@@ -49,13 +56,6 @@ namespace Firma
             numerTelefonu = NumerTelefonu;
         }
 
-        public string Imie { get => imie; set => imie = value; }
-        public string Nazwisko { get => nazwisko; set => nazwisko = value; }
-        public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
-        public string Pesel { get => PESEL; set => PESEL = value; }
-        internal Plcie Plec { get => plec; set => plec = value; }
-        public string NumerTelefonu { get => numerTelefonu; set => numerTelefonu = value; }
-
         public int Wiek()
         {
             return DateTime.Now.Year - dataUrodzenia.Year;
@@ -63,8 +63,10 @@ namespace Firma
 
         public override string ToString()
         {
-            string info = PESEL + " " + imie + " " + nazwisko + " (" + this.Wiek() + ")" + " " + numerTelefonu;
-            return info;
+            if (numerTelefonu != null)
+                return PESEL + " " + imie + " " + nazwisko + " (" + this.Wiek() + ")" + " " + numerTelefonu;
+            else
+                return PESEL + " " + imie + " " + nazwisko + " (" + this.Wiek() + ")";
         }
 
         public void Format()
@@ -124,9 +126,9 @@ namespace Firma
         {
             if (PESEL.Length == 11)
             {
-                if (Convert.ToString(dataUrodzenia.Year % 100) == Convert.ToString(PESEL[0]) + PESEL[1])
+                if (Convert.ToString(dataUrodzenia.Year % 100).PadLeft(2, '0') == Convert.ToString(PESEL[0]) + PESEL[1])
                 {
-                    /*int month = dataUrodzenia.Month;
+                    int month = dataUrodzenia.Month;
                     if (dataUrodzenia.Year >= 2000)
                         month += 20;
                     if (Convert.ToString(month).PadLeft(2, '0') == Convert.ToString(PESEL[2]) + PESEL[3])
@@ -142,7 +144,6 @@ namespace Firma
                                         return true;
                                     else
                                         return false;
-                                    return true;
                                 }
                                 else
                                     return false;
@@ -167,8 +168,7 @@ namespace Firma
                             return false;
                     }
                     else
-                        return false;*/
-                    return true;
+                        return false;
                 }
                 else
                     return false;

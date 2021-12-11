@@ -15,16 +15,22 @@ namespace Firma
     {
         static void Main(string[] args)
         {
-            Osoba osoba1 = new Osoba("Beata", "Nowak", "1992-10-22", "92102201347", Plcie.K);
-            Osoba osoba2 = new Osoba("Jan", "Janowski", "1993-03-15", "92031507772", Plcie.M);
-            Osoba ja = new Osoba("Wojciech", "Wysocki", "2005-09-23", "05292301314", Plcie.M);
+            CzlonekZespolu czlonek1 = new CzlonekZespolu("Witold", "Adamski", "1992-10-22", "92102266738", Plcie.M, "sekretarz", "2020-01-01");
+            CzlonekZespolu czlonek2 = new CzlonekZespolu("Jan", "Janowski", "1992-03-15", "92031532652", Plcie.M, "programista", "2020-01-01");
+            CzlonekZespolu czlonek3 = new CzlonekZespolu("Beata", "Nowak", "1993-11-22", "93112225023", Plcie.K, "projektant", "2020-01-01");
+            CzlonekZespolu czlonek4 = new CzlonekZespolu("Jan", "But", "1992-05-16", "92051613915", Plcie.M, "programista", "2019-06-01");
+            CzlonekZespolu czlonek5 = new CzlonekZespolu("Anna", "Mysza", "1991-07-22", "91072235964", Plcie.K, "projektant", "2019-07-31");
+            KierownikZespolu kierownik = new KierownikZespolu("Adam", "Kowalski", "1990-07-01", "90070142412", Plcie.M, 5);
+            Zespol zespol = new Zespol("Grupa IT", kierownik);
 
-            Console.WriteLine(ja.Pesel);
+            zespol.DodajCzlonka(czlonek1);
+            zespol.DodajCzlonka(czlonek2);
+            zespol.DodajCzlonka(czlonek3);
+            zespol.DodajCzlonka(czlonek4);
+            zespol.DodajCzlonka(czlonek5);
 
-            if (ja.CorrectPESEL())
-                Console.WriteLine("Poprawny PESEL!");
-            else
-                Console.WriteLine("Niepoprawny PESEL!");
+            Console.WriteLine(zespol.ToString());
+            Console.WriteLine(zespol.LiczbaCzlonkow);
 
             Console.ReadKey();
         }
