@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Firma
 {
-    abstract class Osoba
+    abstract class Osoba : ICloneable
     {
         private string imie;
         private string nazwisko;
@@ -176,5 +176,20 @@ namespace Firma
             else
                 return false;
         }
+
+        protected abstract Osoba CreateClone();
+
+        public virtual object Clone()
+        {
+            Osoba clone = CreateClone();
+            clone.imie = this.imie;
+            clone.nazwisko = this.nazwisko;
+            clone.dataUrodzenia = this.dataUrodzenia;
+            clone.PESEL = this.PESEL;
+            clone.plec = this.plec;
+            clone.numerTelefonu = this.numerTelefonu;
+            return clone;
+        }
+
     }
 }

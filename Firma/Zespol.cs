@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Firma
 {
-    class Zespol
+    class Zespol : ICloneable
     {
         private int liczbaCzlonkow;
         private string nazwa;
@@ -95,6 +95,11 @@ namespace Firma
         public List<CzlonekZespolu> WyszukajCzlonkow(int miesiac)
         {
             return czlonkowie.FindAll(x => x.DataZapisu.Month == miesiac);
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
