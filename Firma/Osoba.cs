@@ -7,7 +7,8 @@ using System.Globalization;
 
 namespace Firma
 {
-    abstract class Osoba : ICloneable
+    [Serializable]
+    abstract class Osoba : IEquatable<Osoba>
     {
         private string imie;
         private string nazwisko;
@@ -78,48 +79,47 @@ namespace Firma
         public double AgeInHours(double HourOfBirth)
         {
             dataUrodzenia.AddHours(HourOfBirth);
-            return (DateTime.Now - dataUrodzenia).TotalHours;
+            TimeSpan span = DateTime.Now.Subtract(dataUrodzenia);
+            return Math.Round(span.TotalHours, 2);
         }
 
-        public double CalcCheckDigit()
+        private double CalcTheCheckDigit()
         {
-            double first = Char.GetNumericValue(PESEL[0]) * 1;
-            double second = Char.GetNumericValue(PESEL[1]) * 3;
-            double third = Char.GetNumericValue(PESEL[2]) * 7;
-            double forth = Char.GetNumericValue(PESEL[3]) * 9;
-            double fifth = Char.GetNumericValue(PESEL[4]) * 1;
-            double sixth = Char.GetNumericValue(PESEL[5]) * 3;
-            double seventh = Char.GetNumericValue(PESEL[6]) * 7;
-            double eighth = Char.GetNumericValue(PESEL[7]) * 9;
-            double nineth = Char.GetNumericValue(PESEL[8]) * 1;
-            double tenth = Char.GetNumericValue(PESEL[9]) * 3;
+            double[] numbers = new double[10];
+            double sum = 0, checkDigit;
 
-            if (first > 10)
-                first %= 10;
-            if (second > 10)
-                second %= 10;
-            if (third > 10)
-                third %= 10;
-            if (fifth > 10)
-                fifth %= 10;
-            if (sixth > 10)
-                sixth %= 10;
-            if (seventh > 10)
-                seventh %= 10;
-            if (eighth > 10)
-                eighth %= 10;
-            if (nineth > 10)
-                nineth %= 10;
-            if (tenth > 10)
-                tenth %= 10;
+            numbers[0] = Char.GetNumericValue(PESEL[0]) * 1;
+            numbers[1] = Char.GetNumericValue(PESEL[1]) * 3;
+            numbers[2] = Char.GetNumericValue(PESEL[2]) * 7;
+            numbers[3] = Char.GetNumericValue(PESEL[3]) * 9;
+            numbers[4] = Char.GetNumericValue(PESEL[4]) * 1;
+            numbers[5] = Char.GetNumericValue(PESEL[5]) * 3;
+            numbers[6] = Char.GetNumericValue(PESEL[6]) * 7;
+            numbers[7] = Char.GetNumericValue(PESEL[7]) * 9;
+            numbers[8] = Char.GetNumericValue(PESEL[8]) * 1;
+            numbers[9] = Char.GetNumericValue(PESEL[9]) * 3;
 
-            double sum = first + second + third + forth + fifth + 
-                         sixth + seventh + eighth + nineth + tenth;
+            for (int i = 0; i < 10; i++)
+            {
+                if (numbers[i] > 10)
+                    numbers[i] %= 10;
+                sum += numbers[i];
+            }
+
             if (sum > 10)
                 sum %= 10;
             
-            double check_digit = 10 - sum;
-            return check_digit;
+            checkDigit = 10 - sum;
+            return checkDigit;
+        }
+
+        private bool IsTheCheckDigitCorrect()
+        {
+            double checkDigit = CalcTheCheckDigit();
+            if (checkDigit == Char.GetNumericValue(PESEL[10]))
+                return true;
+            else
+                return false;
         }
 
         public bool CorrectPESEL()
@@ -135,29 +135,17 @@ namespace Firma
                     {
                         if (Convert.ToString(dataUrodzenia.Day).PadLeft(2, '0') == Convert.ToString(PESEL[4]) + PESEL[5])
                         {
-                            if (plec == Plcie.K)
+                            if (plec == Plcie.K && Char.GetNumericValue(PESEL[9]) % 2 == 0)
                             {
-                                if (Char.GetNumericValue(PESEL[9]) % 2 == 0)
-                                {
-                                    double check_digit = CalcCheckDigit();
-                                    if (check_digit == Char.GetNumericValue(PESEL[10]))
-                                        return true;
-                                    else
-                                        return false;
-                                }
+                                if (IsTheCheckDigitCorrect())
+                                    return true;
                                 else
                                     return false;
                             }
-                            else if (plec == Plcie.M)
+                            else if (plec == Plcie.M && Char.GetNumericValue(PESEL[9]) % 2 == 1)
                             {
-                                if (Char.GetNumericValue(PESEL[9]) % 2 == 1)
-                                {
-                                    double check_digit = CalcCheckDigit();
-                                    if (check_digit == Char.GetNumericValue(PESEL[10]))
-                                        return true;
-                                    else
-                                        return false;
-                                }
+                                if (IsTheCheckDigitCorrect())
+                                    return true;
                                 else
                                     return false;
                             }
@@ -177,19 +165,12 @@ namespace Firma
                 return false;
         }
 
-        protected abstract Osoba CreateClone();
-
-        public virtual object Clone()
+        public bool Equals(Osoba x)
         {
-            Osoba clone = CreateClone();
-            clone.imie = this.imie;
-            clone.nazwisko = this.nazwisko;
-            clone.dataUrodzenia = this.dataUrodzenia;
-            clone.PESEL = this.PESEL;
-            clone.plec = this.plec;
-            clone.numerTelefonu = this.numerTelefonu;
-            return clone;
+            if (PESEL.Equals(x.PESEL))
+                return true;
+            else
+                return false;
         }
-
     }
 }

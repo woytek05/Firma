@@ -1,12 +1,18 @@
 ﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Firma
 {
-    class Zespol : ICloneable
+    [Serializable]
+    class Zespol : ICloneable, IZapisywalna
     {
         private int liczbaCzlonkow;
         private string nazwa;
@@ -21,14 +27,19 @@ namespace Firma
         {
             liczbaCzlonkow = 0;
             nazwa = null;
-            kierownik = null;
+            kierownik = new KierownikZespolu();
             czlonkowie = new List<CzlonekZespolu>();
         }
 
-        public Zespol(string Nazwa, KierownikZespolu Kierownik) : this()
+        public Zespol(string Nazwa, KierownikZespolu x) : this()
         {
             nazwa = Nazwa;
-            kierownik = Kierownik;
+            kierownik.Imie = x.Imie;
+            kierownik.Nazwisko = x.Nazwisko;
+            kierownik.DataUrodzenia = x.DataUrodzenia;
+            kierownik.Pesel = x.Pesel;
+            kierownik.Plec = x.Plec;
+            kierownik.Doswiadczenie = x.Doswiadczenie;
         }
 
         public void DodajCzlonka(CzlonekZespolu czlonekZespolu)
@@ -40,7 +51,7 @@ namespace Firma
         public override string ToString()
         {
             string TeamInfo = "Zespół: " + nazwa + "\n" + "Kierownik: " + kierownik.ToString() + "\n";
-            foreach(CzlonekZespolu czlonek in czlonkowie)
+            foreach (CzlonekZespolu czlonek in czlonkowie)
             {
                 TeamInfo += czlonek.ToString() + "\n";
             }
@@ -59,7 +70,7 @@ namespace Firma
 
         public void UsunCzlonka(string PESEL)
         {
-            if (this.JestCzlonkiem(PESEL))
+            if (JestCzlonkiem(PESEL))
             {
                 var memberToRemove = czlonkowie.Single(x => x.Pesel == PESEL);
                 czlonkowie.Remove(memberToRemove);
@@ -71,7 +82,7 @@ namespace Firma
 
         public void UsunCzlonka(string imie, string nazwisko)
         {
-            if (this.JestCzlonkiem(imie, nazwisko))
+            if (JestCzlonkiem(imie, nazwisko))
             {
                 var memberToRemove = czlonkowie.Single(x => x.Imie == imie && x.Nazwisko == nazwisko);
                 czlonkowie.Remove(memberToRemove);
@@ -99,7 +110,83 @@ namespace Firma
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            Zespol clone = new Zespol();
+            clone.liczbaCzlonkow = this.LiczbaCzlonkow;
+            clone.nazwa = this.nazwa;
+
+            clone.kierownik.Imie = kierownik.Imie;
+            clone.kierownik.Nazwisko = kierownik.Nazwisko;
+            clone.kierownik.DataUrodzenia = kierownik.DataUrodzenia;
+            clone.kierownik.Pesel = kierownik.Pesel;
+            clone.kierownik.Plec = kierownik.Plec;
+            clone.kierownik.Doswiadczenie = kierownik.Doswiadczenie;
+
+            clone.czlonkowie = this.czlonkowie.ConvertAll(czlonek =>
+            new CzlonekZespolu(czlonek.Imie, czlonek.Nazwisko, Convert.ToString(czlonek.DataUrodzenia), czlonek.Pesel, czlonek.Plec, czlonek.Funkcja, Convert.ToString(czlonek.DataZapisu)));
+
+            return clone;
+        }
+
+        public void Sortuj()
+        {
+            czlonkowie.Sort((x, y) => x.CompareTo(y));
+        }
+
+        public void SortujPoPESEL()
+        {
+            czlonkowie.Sort(new PESELComparer());
+        }
+
+        public void ZapiszBin(string nazwa)
+        {
+            FileStream fs = new FileStream(nazwa, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                formatter.Serialize(fs, this);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Zapis danych do pliku binarnego nie udał się. Przyczyna: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
+        public object OdczytajBin(string nazwa)
+        {
+            Zespol zespol = null;
+            FileStream fs = new FileStream(nazwa, FileMode.Open);
+
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                zespol = (Zespol)formatter.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Odczyt danych z pliku binarnego nie udał się. Przyczyna: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
+            return zespol;
+        }
+
+        public static void ZapiszXML(string nazwa, Zespol z)
+        {
+            using (var stream = new FileStream(nazwa, FileMode.Create))
+            {
+                var XML = new XmlSerializer(typeof(Zespol));
+                XML.Serialize(stream, z);
+            }
         }
     }
 }

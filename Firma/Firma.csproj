@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CzlonekZespolu.cs" />
+    <Compile Include="IZapisywalna.cs" />
     <Compile Include="KierownikZespolu.cs" />
     <Compile Include="Osoba.cs" />
+    <Compile Include="PESELComparator.cs" />
+    <Compile Include="Plcie.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Zespol.cs" />
