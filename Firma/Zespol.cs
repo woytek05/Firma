@@ -110,19 +110,13 @@ namespace Firma
 
         public object Clone()
         {
-            Zespol clone = new Zespol();
-            clone.liczbaCzlonkow = this.LiczbaCzlonkow;
-            clone.nazwa = this.nazwa;
+            Zespol clone = (Zespol)MemberwiseClone();
+            clone.czlonkowie = new List<CzlonekZespolu>();
 
-            clone.kierownik.Imie = kierownik.Imie;
-            clone.kierownik.Nazwisko = kierownik.Nazwisko;
-            clone.kierownik.DataUrodzenia = kierownik.DataUrodzenia;
-            clone.kierownik.Pesel = kierownik.Pesel;
-            clone.kierownik.Plec = kierownik.Plec;
-            clone.kierownik.Doswiadczenie = kierownik.Doswiadczenie;
-
-            clone.czlonkowie = this.czlonkowie.ConvertAll(czlonek =>
-            new CzlonekZespolu(czlonek.Imie, czlonek.Nazwisko, Convert.ToString(czlonek.DataUrodzenia), czlonek.Pesel, czlonek.Plec, czlonek.Funkcja, Convert.ToString(czlonek.DataZapisu)));
+            foreach (CzlonekZespolu czlonek in czlonkowie)
+            {
+                clone.czlonkowie.Add((CzlonekZespolu)czlonek.Clone());
+            }
 
             return clone;
         }

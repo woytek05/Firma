@@ -25,10 +25,8 @@ namespace Firma
             zespol.DodajCzlonka(czlonek4);
             zespol.DodajCzlonka(czlonek5);
 
-            zespol.ZapiszBin("zespol.bin");
-            Zespol NowaGrupa = (Zespol)zespol.OdczytajBin("zespol.bin");
+            Console.WriteLine(zespol.ToString());
 
-            Console.WriteLine(NowaGrupa.ToString());
 
             Console.ReadKey();
         }
