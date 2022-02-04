@@ -26,7 +26,7 @@ namespace ZespolGUI
         public MainWindow()
         {
             InitializeComponent();
-            zespol = (Zespol)Zespol.OdczytajXML("zespol.XML");
+            zespol = (Zespol)Zespol.OdczytajXML("zespol.xml");
             lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
             txtNazwa.Text = zespol.Nazwa;
             txtKierownik.Text = zespol.Kierownik.ToString();
