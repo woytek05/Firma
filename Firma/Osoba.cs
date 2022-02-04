@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Xml.Serialization;
 
 namespace Firma
 {
     [Serializable]
-    abstract class Osoba : IEquatable<Osoba>
+    public abstract class Osoba : IEquatable<Osoba>
     {
         private string imie;
         private string nazwisko;
         private DateTime dataUrodzenia;
+        [XmlAttribute]
         private string PESEL;
         private Plcie plec;
         private string numerTelefonu;
@@ -57,7 +59,7 @@ namespace Firma
             numerTelefonu = NumerTelefonu;
         }
 
-        public int Wiek()
+        public int Age()
         {
             return DateTime.Now.Year - dataUrodzenia.Year;
         }
@@ -65,15 +67,15 @@ namespace Firma
         public override string ToString()
         {
             if (numerTelefonu != null)
-                return PESEL + " " + imie + " " + nazwisko + " (" + this.Wiek() + ")" + " " + numerTelefonu;
+                return PESEL + " " + imie + " " + nazwisko + " (" + Age() + ")" + " " + numerTelefonu;
             else
-                return PESEL + " " + imie + " " + nazwisko + " (" + this.Wiek() + ")";
+                return PESEL + " " + imie + " " + nazwisko + " (" + Age() + ")";
         }
 
         public void Format()
         {
-            imie = Char.ToUpper(imie[0]) + imie.Substring(1).ToLower();
-            nazwisko = Char.ToUpper(nazwisko[0]) + nazwisko.Substring(1).ToLower();
+            imie = char.ToUpper(imie[0]) + imie.Substring(1).ToLower();
+            nazwisko = char.ToUpper(nazwisko[0]) + nazwisko.Substring(1).ToLower();
         }
 
         public double AgeInHours(double HourOfBirth)
@@ -88,16 +90,16 @@ namespace Firma
             double[] numbers = new double[10];
             double sum = 0, checkDigit;
 
-            numbers[0] = Char.GetNumericValue(PESEL[0]) * 1;
-            numbers[1] = Char.GetNumericValue(PESEL[1]) * 3;
-            numbers[2] = Char.GetNumericValue(PESEL[2]) * 7;
-            numbers[3] = Char.GetNumericValue(PESEL[3]) * 9;
-            numbers[4] = Char.GetNumericValue(PESEL[4]) * 1;
-            numbers[5] = Char.GetNumericValue(PESEL[5]) * 3;
-            numbers[6] = Char.GetNumericValue(PESEL[6]) * 7;
-            numbers[7] = Char.GetNumericValue(PESEL[7]) * 9;
-            numbers[8] = Char.GetNumericValue(PESEL[8]) * 1;
-            numbers[9] = Char.GetNumericValue(PESEL[9]) * 3;
+            numbers[0] = char.GetNumericValue(PESEL[0]) * 1;
+            numbers[1] = char.GetNumericValue(PESEL[1]) * 3;
+            numbers[2] = char.GetNumericValue(PESEL[2]) * 7;
+            numbers[3] = char.GetNumericValue(PESEL[3]) * 9;
+            numbers[4] = char.GetNumericValue(PESEL[4]) * 1;
+            numbers[5] = char.GetNumericValue(PESEL[5]) * 3;
+            numbers[6] = char.GetNumericValue(PESEL[6]) * 7;
+            numbers[7] = char.GetNumericValue(PESEL[7]) * 9;
+            numbers[8] = char.GetNumericValue(PESEL[8]) * 1;
+            numbers[9] = char.GetNumericValue(PESEL[9]) * 3;
 
             for (int i = 0; i < 10; i++)
             {
@@ -116,7 +118,7 @@ namespace Firma
         private bool IsTheCheckDigitCorrect()
         {
             double checkDigit = CalcTheCheckDigit();
-            if (checkDigit == Char.GetNumericValue(PESEL[10]))
+            if (checkDigit == char.GetNumericValue(PESEL[10]))
                 return true;
             else
                 return false;
@@ -135,14 +137,14 @@ namespace Firma
                     {
                         if (Convert.ToString(dataUrodzenia.Day).PadLeft(2, '0') == Convert.ToString(PESEL[4]) + PESEL[5])
                         {
-                            if (plec == Plcie.K && Char.GetNumericValue(PESEL[9]) % 2 == 0)
+                            if (plec == Plcie.K && char.GetNumericValue(PESEL[9]) % 2 == 0)
                             {
                                 if (IsTheCheckDigitCorrect())
                                     return true;
                                 else
                                     return false;
                             }
-                            else if (plec == Plcie.M && Char.GetNumericValue(PESEL[9]) % 2 == 1)
+                            else if (plec == Plcie.M && char.GetNumericValue(PESEL[9]) % 2 == 1)
                             {
                                 if (IsTheCheckDigitCorrect())
                                     return true;

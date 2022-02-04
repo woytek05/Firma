@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Firma
 {
     [Serializable]
-    class KierownikZespolu : Osoba, ICloneable
+    public class KierownikZespolu : Osoba, ICloneable
     {
         private int doswiadczenie;
 

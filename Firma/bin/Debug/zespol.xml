@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Zespol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <liczbaCzlonkow>5</liczbaCzlonkow>
+  <nazwa>Grupa IT</nazwa>
+  <kierownik>
+    <Imie>Adam</Imie>
+    <Nazwisko>Kowalski</Nazwisko>
+    <DataUrodzenia>1990-07-01T00:00:00</DataUrodzenia>
+    <Pesel>90070142412</Pesel>
+    <Doswiadczenie>5</Doswiadczenie>
+  </kierownik>
+  <czlonkowie>
+    <CzlonekZespolu>
+      <Imie>Witold</Imie>
+      <Nazwisko>Adamski</Nazwisko>
+      <DataUrodzenia>1992-10-22T00:00:00</DataUrodzenia>
+      <Pesel>92102266738</Pesel>
+      <DataZapisu>2020-01-01T00:00:00</DataZapisu>
+      <Funkcja>sekretarz</Funkcja>
+    </CzlonekZespolu>
+    <CzlonekZespolu>
+      <Imie>Jan</Imie>
+      <Nazwisko>Janowski</Nazwisko>
+      <DataUrodzenia>1992-03-15T00:00:00</DataUrodzenia>
+      <Pesel>92031532652</Pesel>
+      <DataZapisu>2020-01-01T00:00:00</DataZapisu>
+      <Funkcja>programista</Funkcja>
+    </CzlonekZespolu>
+    <CzlonekZespolu>
+      <Imie>Beata</Imie>
+      <Nazwisko>Nowak</Nazwisko>
+      <DataUrodzenia>1993-11-22T00:00:00</DataUrodzenia>
+      <Pesel>93112225023</Pesel>
+      <DataZapisu>2020-01-01T00:00:00</DataZapisu>
+      <Funkcja>projektant</Funkcja>
+    </CzlonekZespolu>
+    <CzlonekZespolu>
+      <Imie>Jan</Imie>
+      <Nazwisko>But</Nazwisko>
+      <DataUrodzenia>1992-05-16T00:00:00</DataUrodzenia>
+      <Pesel>92051613915</Pesel>
+      <DataZapisu>2019-06-01T00:00:00</DataZapisu>
+      <Funkcja>programista</Funkcja>
+    </CzlonekZespolu>
+    <CzlonekZespolu>
+      <Imie>Anna</Imie>
+      <Nazwisko>Mysza</Nazwisko>
+      <DataUrodzenia>1991-07-22T00:00:00</DataUrodzenia>
+      <Pesel>91072235964</Pesel>
+      <DataZapisu>2019-07-31T00:00:00</DataZapisu>
+      <Funkcja>projektant</Funkcja>
+    </CzlonekZespolu>
+  </czlonkowie>
+  <LiczbaCzlonkow>5</LiczbaCzlonkow>
+  <Nazwa>Grupa IT</Nazwa>
+  <Kierownik>
+    <Imie>Adam</Imie>
+    <Nazwisko>Kowalski</Nazwisko>
+    <DataUrodzenia>1990-07-01T00:00:00</DataUrodzenia>
+    <Pesel>90070142412</Pesel>
+    <Doswiadczenie>5</Doswiadczenie>
+  </Kierownik>
+</Zespol>

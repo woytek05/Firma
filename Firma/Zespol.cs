@@ -12,12 +12,12 @@ using System.Xml.Serialization;
 namespace Firma
 {
     [Serializable]
-    class Zespol : ICloneable, IZapisywalna
+    public class Zespol : ICloneable, IZapisywalna
     {
-        private int liczbaCzlonkow;
-        private string nazwa;
-        private KierownikZespolu kierownik;
-        private List<CzlonekZespolu> czlonkowie;
+        public int liczbaCzlonkow;
+        public string nazwa;
+        public KierownikZespolu kierownik;
+        public List<CzlonekZespolu> czlonkowie;
 
         public int LiczbaCzlonkow { get => liczbaCzlonkow; set => liczbaCzlonkow = value; }
         public string Nazwa { get => nazwa; set => nazwa = value; }
@@ -176,11 +176,45 @@ namespace Firma
 
         public static void ZapiszXML(string nazwa, Zespol z)
         {
-            using (var stream = new FileStream(nazwa, FileMode.Create))
+            TextWriter f = new StreamWriter(nazwa);
+            XmlSerializer s = new XmlSerializer(typeof(Zespol));
+
+            try
             {
-                var XML = new XmlSerializer(typeof(Zespol));
-                XML.Serialize(stream, z);
+                s.Serialize(f, z);
             }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Zapis danych do pliku XML nie udał się. Przyczyna: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                f.Close();
+            }
+        }
+
+        static Zespol OdczytajXML(string nazwa)
+        {
+            Zespol zespol = null;
+            FileStream fs = new FileStream(nazwa, FileMode.Open);
+
+            try
+            {
+                XmlSerializer s = new XmlSerializer(typeof(Zespol));
+                zespol = (Zespol)s.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Odczyt danych z pliku XML nie udał się. Przyczyna: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
+            return zespol;
         }
     }
 }

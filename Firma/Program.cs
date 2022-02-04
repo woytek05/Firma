@@ -27,7 +27,6 @@ namespace Firma
 
             Console.WriteLine(zespol.ToString());
 
-
             Console.ReadKey();
         }
     }

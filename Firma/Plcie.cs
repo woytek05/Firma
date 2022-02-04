@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Firma
 {
-    enum Plcie
+    public enum Plcie
     {
         K,
         M

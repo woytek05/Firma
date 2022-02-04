@@ -8,7 +8,7 @@ using System.Globalization;
 namespace Firma
 {
     [Serializable]
-    class CzlonekZespolu : Osoba, ICloneable, IComparable<CzlonekZespolu>
+    public class CzlonekZespolu : Osoba, ICloneable, IComparable<CzlonekZespolu>
     {
         private DateTime dataZapisu;
         private string funkcja;
