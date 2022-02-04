@@ -194,7 +194,7 @@ namespace Firma
             }
         }
 
-        static Zespol OdczytajXML(string nazwa)
+        public static Zespol OdczytajXML(string nazwa)
         {
             Zespol zespol = null;
             FileStream fs = new FileStream(nazwa, FileMode.Open);

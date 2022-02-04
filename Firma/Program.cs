@@ -26,6 +26,10 @@ namespace Firma
             zespol.DodajCzlonka(czlonek5);
 
             Console.WriteLine(zespol.ToString());
+            Zespol.ZapiszXML("zespol.xml", zespol);
+            Zespol zespol2 = Zespol.OdczytajXML("zespol.xml");
+
+            Console.WriteLine(zespol2.ToString());
 
             Console.ReadKey();
         }
