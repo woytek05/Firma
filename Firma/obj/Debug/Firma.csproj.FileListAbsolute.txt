@@ -5,3 +5,4 @@ C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.SuggestedBindingR
 C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.CoreCompileInputs.cache
 C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.exe
 C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.pdb
+C:\Users\wojte\source\repos\firma\Firma\obj\Debug\Firma.csproj.AssemblyReference.cache

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Firma
 {
-    interface IZapisywalna
+    public interface IZapisywalna
     {
         void ZapiszBin(string nazwa);
         object OdczytajBin(string nazwa);

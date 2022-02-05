@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Firma
 {
-    class PESELComparer : IComparer<CzlonekZespolu>
+    public class PESELComparer : IComparer<CzlonekZespolu>
     {
         public int Compare(CzlonekZespolu x, CzlonekZespolu y)
         {

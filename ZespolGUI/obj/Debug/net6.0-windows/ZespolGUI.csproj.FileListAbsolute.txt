@@ -23,3 +23,5 @@ C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.d
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ref\ZespolGUI.dll
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.pdb
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.genruntimeconfig.cache
+C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.g.cs
+C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.baml

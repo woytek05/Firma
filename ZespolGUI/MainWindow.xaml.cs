@@ -22,7 +22,8 @@ namespace ZespolGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        Zespol zespol = new Zespol();
+        Zespol zespol = new();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +31,41 @@ namespace ZespolGUI
             lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
             txtNazwa.Text = zespol.Nazwa;
             txtKierownik.Text = zespol.Kierownik.ToString();
+        }
+
+        private void MenuZapisz_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                zespol.nazwa = txtNazwa.Text;
+                Zespol.ZapiszXML(filename, zespol);
+            }
+        }
+
+        private void btnZmien_Click(object sender, RoutedEventArgs e)
+        {
+            OsobaWindow okno = new OsobaWindow(zespol.kierownik);
+            okno.ShowDialog();
+            txtKierownik.Text = zespol.kierownik.ToString();
+        }
+
+        private void btnDodaj_Click(object sender, RoutedEventArgs e)
+        {
+            CzlonekZespolu cz = new CzlonekZespolu();
+            OsobaWindow okno = new OsobaWindow(cz);
+            okno.ShowDialog();
+            zespol.DodajCzlonka(cz);
+            //lista.Add(cz);
+        }
+
+        private void btnUsun_Click(object sender, RoutedEventArgs e)
+        {
+            int zaznaczony = lstCzlonkowie.SelectedIndex;
+            //lista.RemoveAt(zaznaczony);
+            zespol.czlonkowie.RemoveAt(zaznaczony);
         }
     }
 }

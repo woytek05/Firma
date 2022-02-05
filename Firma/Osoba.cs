@@ -23,7 +23,7 @@ namespace Firma
         public string Nazwisko { get => nazwisko; set => nazwisko = value; }
         public DateTime DataUrodzenia { get => dataUrodzenia; set => dataUrodzenia = value; }
         public string Pesel { get => PESEL; set => PESEL = value; }
-        internal Plcie Plec { get => plec; set => plec = value; }
+        public Plcie Plec { get => plec; set => plec = value; }
         public string NumerTelefonu { get => numerTelefonu; set => numerTelefonu = value; }
 
         public Osoba()
