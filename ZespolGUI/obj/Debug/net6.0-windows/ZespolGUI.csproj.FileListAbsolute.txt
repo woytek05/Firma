@@ -7,12 +7,13 @@ C:\Users\wojte\source\repos\firma\ZespolGUI\bin\Debug\net6.0-windows\ZespolGUI.p
 C:\Users\wojte\source\repos\firma\ZespolGUI\bin\Debug\net6.0-windows\Firma.exe
 C:\Users\wojte\source\repos\firma\ZespolGUI\bin\Debug\net6.0-windows\Firma.pdb
 C:\Users\wojte\source\repos\firma\ZespolGUI\bin\Debug\net6.0-windows\Firma.exe.config
-C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.csproj.AssemblyReference.cache
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.g.cs
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI_MarkupCompile.cache
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI_MarkupCompile.lref
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.baml
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.g.resources
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.AssemblyInfoInputs.cache
@@ -23,5 +24,4 @@ C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.d
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ref\ZespolGUI.dll
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.pdb
 C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.genruntimeconfig.cache
-C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.g.cs
-C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\OsobaWindow.baml
+C:\Users\wojte\source\repos\firma\ZespolGUI\obj\Debug\net6.0-windows\ZespolGUI.csproj.AssemblyReference.cache

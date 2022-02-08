@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZespolGUI"
         mc:Ignorable="d"
-        Title="Zespół" Height="400" Width="500">
+        Closing="Window_Closing"
+        Background="LightGray"
+        Title="Zespół" MinHeight="400" MaxHeight="400" MinWidth="500" MaxWidth="500">
     <Grid>
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Plik">
-                    <MenuItem x:Name="menuItemOtworz" Header="_Otwórz"/> <!-- Click="MenuOtworz_Click"/> -->
-                    <MenuItem x:Name="menuItemZapisz" Header="_Zapisz" Click="MenuZapisz_Click"/>
-                    <MenuItem x:Name="menuItemWyjdz" Header="_Wyjdź"/> <!-- Click="MenuWyjdz_Click"/> -->
+                    <MenuItem Header="_Otwórz" Click="MenuOtworz_Click"/>
+                    <MenuItem Header="_Zapisz" Click="MenuZapisz_Click"/>
+                    <MenuItem Header="_Wyjdź" Click="MenuWyjdz_Click"/>
                 </MenuItem>
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
         <Label x:Name="lblKierownik" Content="Kierownik" HorizontalAlignment="Left" Margin="35,87,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNazwa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="350" Height="25" TextAlignment="Left"/>
-        <TextBox x:Name="txtKierownik" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="280" Height="26"/>
+        <TextBox x:Name="txtNazwa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Height="25" TextAlignment="Left" TextChanged="txtNazwa_TextChanged"/>
+        <TextBox x:Name="txtKierownik" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="26" TextChanged="txtKierownik_TextChanged"/>
         <Button x:Name="btnZmien" Content="Zmień" HorizontalAlignment="Left" Margin="405,86,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnZmien_Click"/>
         <Label x:Name="lblCzlonkowieZespolu" Content="Członkowie zespołu" HorizontalAlignment="Left" Margin="35,132,0,0" VerticalAlignment="Top" Height="25" Width="120"/>
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="35,163,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnDodaj_Click"/>
         <Button x:Name="btnUsun" Content="Usuń" HorizontalAlignment="Left" Margin="35,202,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnUsun_Click"/>
-        <ListBox x:Name="lstCzlonkowie" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="115,163,35,52"/>
+        <ListBox x:Name="lstCzlonkowie" Margin="115,163,35,52"/>
         <Label x:Name="lblNazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="35,50,0,0" VerticalAlignment="Top"/>
+        
     </Grid>
 </Window>

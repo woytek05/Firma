@@ -8,7 +8,7 @@ namespace Firma
 {
     public enum Plcie
     {
-        K,
-        M
+        M,
+        K
     }
 }

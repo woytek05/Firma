@@ -25,7 +25,7 @@ namespace Firma
 
         public override string ToString()
         {
-            return base.ToString() + " " + doswiadczenie;
+            return Imie + " " + Nazwisko + ", " + Pesel + " " + DataUrodzenia.ToString("dd-MM-yyyy");
         }
 
         public object Clone()

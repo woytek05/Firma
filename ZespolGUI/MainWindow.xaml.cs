@@ -22,27 +22,21 @@ namespace ZespolGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        Zespol zespol = new();
+        private Zespol zespol = new();
+        protected bool isDataDirty = false;
 
         public MainWindow()
         {
             InitializeComponent();
-            zespol = (Zespol)Zespol.OdczytajXML("zespol.xml");
+            OdczytajXML("zespol.xml");
+        }
+
+        private void OdczytajXML(string filename)
+        {
+            zespol = (Zespol)Zespol.OdczytajXML(filename);
             lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
             txtNazwa.Text = zespol.Nazwa;
             txtKierownik.Text = zespol.Kierownik.ToString();
-        }
-
-        private void MenuZapisz_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result == true)
-            {
-                string filename = dlg.FileName;
-                zespol.nazwa = txtNazwa.Text;
-                Zespol.ZapiszXML(filename, zespol);
-            }
         }
 
         private void btnZmien_Click(object sender, RoutedEventArgs e)
@@ -58,14 +52,73 @@ namespace ZespolGUI
             OsobaWindow okno = new OsobaWindow(cz);
             okno.ShowDialog();
             zespol.DodajCzlonka(cz);
-            //lista.Add(cz);
+            lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
         }
 
         private void btnUsun_Click(object sender, RoutedEventArgs e)
         {
             int zaznaczony = lstCzlonkowie.SelectedIndex;
-            //lista.RemoveAt(zaznaczony);
-            zespol.czlonkowie.RemoveAt(zaznaczony);
+            if (zaznaczony != -1)
+            {
+                zespol.czlonkowie.RemoveAt(zaznaczony);
+                lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
+            }
+        }
+
+        private void MenuZapisz_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                zespol.nazwa = txtNazwa.Text;
+                Zespol.ZapiszXML(filename, zespol);
+            }
+        }
+
+        private void MenuOtworz_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+                OdczytajXML(filename);
+            }
+        }
+
+        private void MenuWyjdz_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (isDataDirty)
+            {
+                string msg = "Wyjść bez zapisania zmian?";
+                MessageBoxResult result =
+                  MessageBox.Show(
+                    msg,
+                    "Zespół",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+                if (result == MessageBoxResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void txtNazwa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            isDataDirty = true;
+        }
+
+        private void txtKierownik_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            isDataDirty = true;
         }
     }
 }

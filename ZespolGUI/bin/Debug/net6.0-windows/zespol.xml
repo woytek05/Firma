@@ -7,6 +7,7 @@
     <Nazwisko>Kowalski</Nazwisko>
     <DataUrodzenia>1990-07-01T00:00:00</DataUrodzenia>
     <Pesel>90070142412</Pesel>
+    <Plec>M</Plec>
     <Doswiadczenie>5</Doswiadczenie>
   </kierownik>
   <czlonkowie>
@@ -15,6 +16,7 @@
       <Nazwisko>Adamski</Nazwisko>
       <DataUrodzenia>1992-10-22T00:00:00</DataUrodzenia>
       <Pesel>92102266738</Pesel>
+      <Plec>M</Plec>
       <DataZapisu>2020-01-01T00:00:00</DataZapisu>
       <Funkcja>sekretarz</Funkcja>
     </CzlonekZespolu>
@@ -23,6 +25,7 @@
       <Nazwisko>Janowski</Nazwisko>
       <DataUrodzenia>1992-03-15T00:00:00</DataUrodzenia>
       <Pesel>92031532652</Pesel>
+      <Plec>M</Plec>
       <DataZapisu>2020-01-01T00:00:00</DataZapisu>
       <Funkcja>programista</Funkcja>
     </CzlonekZespolu>
@@ -31,6 +34,7 @@
       <Nazwisko>Nowak</Nazwisko>
       <DataUrodzenia>1993-11-22T00:00:00</DataUrodzenia>
       <Pesel>93112225023</Pesel>
+      <Plec>K</Plec>
       <DataZapisu>2020-01-01T00:00:00</DataZapisu>
       <Funkcja>projektant</Funkcja>
     </CzlonekZespolu>
@@ -39,6 +43,7 @@
       <Nazwisko>But</Nazwisko>
       <DataUrodzenia>1992-05-16T00:00:00</DataUrodzenia>
       <Pesel>92051613915</Pesel>
+      <Plec>M</Plec>
       <DataZapisu>2019-06-01T00:00:00</DataZapisu>
       <Funkcja>programista</Funkcja>
     </CzlonekZespolu>
@@ -47,6 +52,7 @@
       <Nazwisko>Mysza</Nazwisko>
       <DataUrodzenia>1991-07-22T00:00:00</DataUrodzenia>
       <Pesel>91072235964</Pesel>
+      <Plec>K</Plec>
       <DataZapisu>2019-07-31T00:00:00</DataZapisu>
       <Funkcja>projektant</Funkcja>
     </CzlonekZespolu>
@@ -58,6 +64,7 @@
     <Nazwisko>Kowalski</Nazwisko>
     <DataUrodzenia>1990-07-01T00:00:00</DataUrodzenia>
     <Pesel>90070142412</Pesel>
+    <Plec>M</Plec>
     <Doswiadczenie>5</Doswiadczenie>
   </Kierownik>
 </Zespol>

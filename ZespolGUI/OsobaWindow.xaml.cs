@@ -31,13 +31,28 @@ namespace ZespolGUI
         public OsobaWindow(Osoba osoba) : this()
         {
             _osoba = osoba;
+            txtPesel.Text = osoba.Pesel;
+            txtImie.Text = osoba.Imie;
+            txtNazwisko.Text = osoba.Nazwisko;
+            txtDataUrodzenia.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
+            cmbPlec.Text = (osoba.Plec == Plcie.K) ? "kobieta" : "mężczyzna";
             if (_osoba is KierownikZespolu)
             {
-                txtPesel.Text = osoba.Pesel;
-                txtImie.Text = osoba.Imie;
-                txtNazwisko.Text = osoba.Nazwisko;
-                txtDataUrodzenia.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
-                cmbPlec.Text = (osoba.Plec == Plcie.K) ? "kobieta" : "mężczyzna";
+                var kierownik = _osoba as KierownikZespolu;
+                if (kierownik != null)
+                {
+                    lblDodatkowy.Content = "Doświadczenie";
+                    txtDodatkowy.Text = Convert.ToString(kierownik.Doswiadczenie);
+                }
+            }
+            else if (_osoba is CzlonekZespolu)
+            {
+                var czlonek = _osoba as CzlonekZespolu;
+                if (czlonek != null)
+                {
+                    lblDodatkowy.Content = "Funkcja";
+                    txtDodatkowy.Text = czlonek.Funkcja;
+                }
             }
         }
 

@@ -6,20 +6,29 @@
         xmlns:local="clr-namespace:ZespolGUI"
         xmlns:Firma="clr-namespace:Firma;assembly=Firma" x:Class="ZespolGUI.OsobaWindow"
         mc:Ignorable="d"
-        Title="Wprowadź/Zmień dane" Height="350" Width="350">
+        Background="LightGray"
+        Title="Wprowadź/Zmień dane"
+        MinHeight="350"
+        MaxHeight="350"
+        MinWidth="350"
+        MaxWidth="350">
     <Grid>
-        <Label x:Name="lblPesel" Content="PESEL" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
-        <Label x:Name="lblImie" Content="Imię" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
-        <Label x:Name="lblNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
-        <Label x:Name="lblDataUrodzenia" Content="Data urodz." HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="25" Margin="10,107,0,0"/>
-        <Label x:Name="lblPlec" Content="Płeć" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
-        <Button x:Name="btnZatwierdz" Content="Zatwierdź" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" Width="130" Height="25" Click="btnZatwierdz_Click"/>
-        <Button x:Name="btnAnuluj" Content="Anuluj" HorizontalAlignment="Left" Margin="160,199,0,0" VerticalAlignment="Top" Width="130" Height="25" Click="btnAnuluj_Click"/>
-        <ComboBox x:Name="cmbPlec" HorizontalAlignment="Left" Margin="90,140,0,0" VerticalAlignment="Top" Width="200" Height="20"/>
-        <TextBox x:Name="txtPesel" HorizontalAlignment="Left" Margin="90,22,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200" Height="20"/>
-        <TextBox x:Name="txtImie" HorizontalAlignment="Left" Margin="90,53,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200" Height="19"/>
-        <TextBox x:Name="txtNazwisko" HorizontalAlignment="Left" Margin="90,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200" Height="20"/>
-        <TextBox x:Name="txtDataUrodzenia" HorizontalAlignment="Left" Margin="90,110,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200" Height="20"/>
-
+        <Label x:Name="lblPesel" Content="PESEL" HorizontalAlignment="Left" Margin="38,20,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
+        <Label x:Name="lblImie" Content="Imię" HorizontalAlignment="Left" Margin="38,55,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
+        <Label x:Name="lblNazwisko" Content="Nazwisko" HorizontalAlignment="Left" Margin="38,92,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <Label x:Name="lblDataUrodzenia" Content="Data urodz." HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="25" Margin="38,128,0,0"/>
+        <Label x:Name="lblPlec" Content="Płeć" HorizontalAlignment="Left" Margin="38,164,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
+        <TextBox x:Name="txtPesel" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <TextBox x:Name="txtImie" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <TextBox x:Name="txtNazwisko" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <TextBox x:Name="txtDataUrodzenia" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <ComboBox x:Name="cmbPlec" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,164,0,0" VerticalAlignment="Top" Width="200" Height="25" SelectedIndex="0">
+            <Label x:Name="lblMezczyna" Content="mężczyzna"/>
+            <Label x:Name="lblKobieta" Content="kobieta"/>
+        </ComboBox>
+        <Label x:Name="lblDodatkowy" Content="" HorizontalAlignment="Left" Margin="38,208,0,0" VerticalAlignment="Top" Width="80" Height="25"/>
+        <TextBox x:Name="txtDodatkowy" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="118,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
+        <Button x:Name="btnZatwierdz" Content="Zatwierdź" HorizontalAlignment="Left" Margin="38,0,0,23" VerticalAlignment="Bottom" Width="130" Height="25" Click="btnZatwierdz_Click"/>
+        <Button x:Name="btnAnuluj" Content="Anuluj" HorizontalAlignment="Left" Margin="188,0,0,23" VerticalAlignment="Bottom" Width="130" Height="25" Click="btnAnuluj_Click"/>
     </Grid>
 </Window>
