@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Background="LightGray"
-        Title="Zespół" MinHeight="400" MaxHeight="400" MinWidth="500" MaxWidth="500">
+        Title="Zespół"
+        MinHeight="400"
+        MaxHeight="400"
+        MinWidth="500"
+        MaxWidth="500">
     <Grid>
         <DockPanel Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
@@ -19,15 +23,15 @@
             </Menu>
             <StackPanel></StackPanel>
         </DockPanel>
-        <Label x:Name="lblKierownik" Content="Kierownik" HorizontalAlignment="Left" Margin="35,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblNazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="35,50,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNazwa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Height="25" TextAlignment="Left" TextChanged="txtNazwa_TextChanged"/>
+        <Label x:Name="lblKierownik" Content="Kierownik" HorizontalAlignment="Left" Margin="35,87,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtKierownik" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="115,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" Height="26" TextChanged="txtKierownik_TextChanged"/>
         <Button x:Name="btnZmien" Content="Zmień" HorizontalAlignment="Left" Margin="405,86,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnZmien_Click"/>
         <Label x:Name="lblCzlonkowieZespolu" Content="Członkowie zespołu" HorizontalAlignment="Left" Margin="35,132,0,0" VerticalAlignment="Top" Height="25" Width="120"/>
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="35,163,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnDodaj_Click"/>
-        <Button x:Name="btnUsun" Content="Usuń" HorizontalAlignment="Left" Margin="35,202,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnUsun_Click"/>
-        <ListBox x:Name="lstCzlonkowie" Margin="115,163,35,52"/>
-        <Label x:Name="lblNazwa" Content="Nazwa" HorizontalAlignment="Left" Margin="35,50,0,0" VerticalAlignment="Top"/>
-        
+        <Button x:Name="btnUsun" Content="Usuń" HorizontalAlignment="Left" Margin="35,206,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnUsun_Click"/>
+        <Button x:Name="btnZmienCzlonka" Content="Zmień" HorizontalAlignment="Left" Margin="35,248,0,0" VerticalAlignment="Top" Width="60" Height="25" Click="btnZmienCzlonka_Click"/>
+        <ListBox x:Name="lstCzlonkowie" Margin="115,163,35,30"/>
     </Grid>
 </Window>

@@ -23,7 +23,9 @@ namespace ZespolGUI
     public partial class MainWindow : Window
     {
         private Zespol zespol = new();
-        protected bool isDataDirty = false;
+        private bool isDataDirty = false;
+
+        public bool IsDataDirty { get => isDataDirty; set => isDataDirty = value; }
 
         public MainWindow()
         {
@@ -51,8 +53,11 @@ namespace ZespolGUI
             CzlonekZespolu cz = new CzlonekZespolu();
             OsobaWindow okno = new OsobaWindow(cz);
             okno.ShowDialog();
-            zespol.DodajCzlonka(cz);
-            lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
+            if (okno.btnAnulujClicked == false)
+            {
+                zespol.DodajCzlonka(cz);
+                lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
+            }
         }
 
         private void btnUsun_Click(object sender, RoutedEventArgs e)
@@ -95,9 +100,9 @@ namespace ZespolGUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (isDataDirty)
+            if (IsDataDirty)
             {
-                string msg = "Wyjść bez zapisania zmian?";
+                string msg = "Zapisać zmiany?";
                 MessageBoxResult result =
                   MessageBox.Show(
                     msg,
@@ -108,17 +113,38 @@ namespace ZespolGUI
                 {
                     e.Cancel = true;
                 }
+                else
+                {
+                    Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                    Nullable<bool> wynik = dlg.ShowDialog();
+                    if (wynik == true)
+                    {
+                        string filename = dlg.FileName;
+                        zespol.nazwa = txtNazwa.Text;
+                        Zespol.ZapiszXML(filename, zespol);
+                    }
+                }
             }
         }
 
         private void txtNazwa_TextChanged(object sender, TextChangedEventArgs e)
         {
-            isDataDirty = true;
+            IsDataDirty = true;
         }
 
         private void txtKierownik_TextChanged(object sender, TextChangedEventArgs e)
         {
-            isDataDirty = true;
+            IsDataDirty = true;
+        }
+
+        private void btnZmienCzlonka_Click(object sender, RoutedEventArgs e)
+        {
+            if(lstCzlonkowie.SelectedItem != null)
+            {
+                OsobaWindow okno = new OsobaWindow((CzlonekZespolu)lstCzlonkowie.SelectedItem);
+                okno.ShowDialog();
+                lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
+            }  
         }
     }
 }

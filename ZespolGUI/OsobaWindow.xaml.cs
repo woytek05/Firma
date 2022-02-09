@@ -22,6 +22,7 @@ namespace ZespolGUI
     public partial class OsobaWindow : Window
     {
         Osoba _osoba;
+        public bool btnAnulujClicked = false;
 
         public OsobaWindow()
         {
@@ -64,16 +65,36 @@ namespace ZespolGUI
                 _osoba.Imie = txtImie.Text;
                 _osoba.Nazwisko = txtNazwisko.Text;
                 string[] fdate = { "yyyy-MM-dd", "yyyy/MM/dd", "MM/dd/yyyy", "dd-MMM-yyyy" };
-                DateTime.TryParseExact(txtDataUrodzenia.Text, fdate, null, DateTimeStyles.None, out DateTime
-                date);
+                if (DateTime.TryParseExact(txtDataUrodzenia.Text, fdate, null, DateTimeStyles.None, out DateTime date) == false)
+                {
+                    MessageBox.Show("Podana data jest nieprawidłowa!", "Nieprawidłowa data", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
                 _osoba.DataUrodzenia = date;
                 _osoba.Plec = (cmbPlec.Text == "kobieta") ? Plcie.K : Plcie.M;
+                if (_osoba is KierownikZespolu)
+                {
+                    var kierownik = _osoba as KierownikZespolu;
+                    if (kierownik != null)
+                    {
+                        kierownik.Doswiadczenie = Convert.ToInt32(txtDodatkowy.Text);
+                    }
+                }
+                else if (_osoba is CzlonekZespolu)
+                {
+                    var czlonek = _osoba as CzlonekZespolu;
+                    if (czlonek != null)
+                    {
+                        czlonek.Funkcja = txtDodatkowy.Text;
+                    }
+                }
             }
             DialogResult = true;
         }
 
         private void btnAnuluj_Click(object sender, RoutedEventArgs e)
         {
+            btnAnulujClicked = true;
             DialogResult = false;
         }
     }
