@@ -68,6 +68,10 @@ namespace ZespolGUI
                 zespol.czlonkowie.RemoveAt(zaznaczony);
                 lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
             }
+            else
+            {
+                MessageBox.Show("Zaznacz członka!", "Brak zaznaczenia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void MenuZapisz_Click(object sender, RoutedEventArgs e)
@@ -95,7 +99,7 @@ namespace ZespolGUI
 
         private void MenuWyjdz_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -107,13 +111,13 @@ namespace ZespolGUI
                   MessageBox.Show(
                     msg,
                     "Zespół",
-                    MessageBoxButton.YesNo,
+                    MessageBoxButton.YesNoCancel,
                     MessageBoxImage.Warning);
                 if (result == MessageBoxResult.No)
                 {
-                    e.Cancel = true;
+                    Application.Current.Shutdown();
                 }
-                else
+                else if (result == MessageBoxResult.Yes)
                 {
                     Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
                     Nullable<bool> wynik = dlg.ShowDialog();
@@ -123,6 +127,10 @@ namespace ZespolGUI
                         zespol.nazwa = txtNazwa.Text;
                         Zespol.ZapiszXML(filename, zespol);
                     }
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
         }
@@ -139,12 +147,16 @@ namespace ZespolGUI
 
         private void btnZmienCzlonka_Click(object sender, RoutedEventArgs e)
         {
-            if(lstCzlonkowie.SelectedItem != null)
+            if (lstCzlonkowie.SelectedItem == null)
+            {
+                MessageBox.Show("Zaznacz członka!", "Brak zaznaczenia", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
             {
                 OsobaWindow okno = new OsobaWindow((CzlonekZespolu)lstCzlonkowie.SelectedItem);
                 okno.ShowDialog();
                 lstCzlonkowie.ItemsSource = new ObservableCollection<CzlonekZespolu>(zespol.czlonkowie);
-            }  
+            }
         }
     }
 }

@@ -32,11 +32,6 @@ namespace ZespolGUI
         public OsobaWindow(Osoba osoba) : this()
         {
             _osoba = osoba;
-            txtPesel.Text = osoba.Pesel;
-            txtImie.Text = osoba.Imie;
-            txtNazwisko.Text = osoba.Nazwisko;
-            txtDataUrodzenia.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
-            cmbPlec.Text = (osoba.Plec == Plcie.K) ? "kobieta" : "mężczyzna";
             if (_osoba is KierownikZespolu)
             {
                 var kierownik = _osoba as KierownikZespolu;
@@ -55,6 +50,15 @@ namespace ZespolGUI
                     txtDodatkowy.Text = czlonek.Funkcja;
                 }
             }
+            if (_osoba.Pesel == "00000000000")
+            {
+                return;
+            }
+            txtPesel.Text = osoba.Pesel;
+            txtImie.Text = osoba.Imie;
+            txtNazwisko.Text = osoba.Nazwisko;
+            txtDataUrodzenia.Text = osoba.DataUrodzenia.ToString("dd-MMM-yyyy");
+            cmbPlec.Text = (osoba.Plec == Plcie.K) ? "kobieta" : "mężczyzna";
         }
 
         private void btnZatwierdz_Click(object sender, RoutedEventArgs e)
@@ -75,9 +79,14 @@ namespace ZespolGUI
                 if (_osoba is KierownikZespolu)
                 {
                     var kierownik = _osoba as KierownikZespolu;
-                    if (kierownik != null)
+                    if (kierownik != null && isNumber(txtDodatkowy.Text))
                     {
                         kierownik.Doswiadczenie = Convert.ToInt32(txtDodatkowy.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Niepoprawne doświadczenie!", "Niepoprawne doświadczenie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
                     }
                 }
                 else if (_osoba is CzlonekZespolu)
@@ -96,6 +105,16 @@ namespace ZespolGUI
         {
             btnAnulujClicked = true;
             DialogResult = false;
+        }
+
+        private bool isNumber(string str)
+        {
+            foreach (char letter in str)
+            {
+                if (char.IsLetter(letter))
+                    return false;
+            }
+            return true;
         }
     }
 }

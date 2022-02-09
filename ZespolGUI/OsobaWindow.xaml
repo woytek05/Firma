@@ -22,7 +22,7 @@
         <Label x:Name="lblDataUrodzenia" Content="Data urodz." HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Height="25" Margin="24,130,0,0"/>
         <TextBox x:Name="txtDataUrodzenia" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="114,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="25"/>
         <Label x:Name="lblPlec" Content="Płeć" HorizontalAlignment="Left" Margin="24,166,0,0" VerticalAlignment="Top" Width="90" Height="25"/>
-        <ComboBox x:Name="cmbPlec" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="114,166,0,0" VerticalAlignment="Top" Width="200" Height="25" SelectedIndex="0">
+        <ComboBox x:Name="cmbPlec" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="114,166,0,0" VerticalAlignment="Top" Width="200" Height="25">
             <Label x:Name="lblMezczyna" Content="mężczyzna"/>
             <Label x:Name="lblKobieta" Content="kobieta"/>
         </ComboBox>
